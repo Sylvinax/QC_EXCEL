@@ -1,20 +1,6 @@
 ﻿Imports Microsoft.Office.Interop.Excel
 
 Public Class ExcelClass
-    Function OpenExcel(path As String, visible As Boolean) As Workbooks
-
-        Dim objExcel As New Application
-        objExcel.Visible = visible
-        Dim strFileList As String() = IO.Directory.GetFiles(path)
-        Dim intFilecount As Integer = IO.Directory.GetFiles(path).Count
-        For Each fileName In strFileList
-            If InStr(fileName, ".xls") > 0 Then
-                objExcel.Workbooks.Open(fileName)
-
-            End If
-        Next
-        Return objExcel.Workbooks
-    End Function
 
     'Get the TestStep from each Excel
     Function GetTestStep(path As String, Optional startRow As Integer = 2, Optional neededColumn As Integer = 3) As Dictionary(Of String, ArrayList)
@@ -42,9 +28,7 @@ Public Class ExcelClass
 
             Next
 
-
             NeededDatas.Add(IO.Path.GetFileNameWithoutExtension(objWorkbook.Name), testSteps)
-
 
         Next objWorkbook
 
@@ -52,12 +36,7 @@ Public Class ExcelClass
 
         Return NeededDatas
 
-
-
     End Function
-
-
-
     Function GetExcelFileName(path) As ArrayList
         Dim strFileList As String() = IO.Directory.GetFiles(path)
         Dim intFilecount As Integer = IO.Directory.GetFiles(path).Count
@@ -69,4 +48,18 @@ Public Class ExcelClass
         Next
         Return filenames
     End Function
+
+    Function OpenExcel(path As String, visible As Boolean) As Workbooks
+        Dim objExcel As New Application
+        objExcel.Visible = visible
+        Dim strFileList As String() = IO.Directory.GetFiles(path)
+        Dim intFilecount As Integer = IO.Directory.GetFiles(path).Count
+        For Each fileName In strFileList
+            If InStr(fileName, ".xls") > 0 Then
+                objExcel.Workbooks.Open(fileName)
+            End If
+        Next
+        Return objExcel.Workbooks
+    End Function
+
 End Class
