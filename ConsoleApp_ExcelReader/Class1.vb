@@ -1,8 +1,6 @@
 ﻿Imports Microsoft.Office.Interop.Excel
 
 Public Class ExcelClass
-
-
     Function OpenExcel(path As String, visible As Boolean) As Workbooks
 
         Dim objExcel As New Application
@@ -16,23 +14,16 @@ Public Class ExcelClass
             End If
         Next
         Return objExcel.Workbooks
-
-
     End Function
-
 
     'Get the TestStep from each Excel
     Function GetTestStep(path As String, Optional startRow As Integer = 2, Optional neededColumn As Integer = 3) As Dictionary(Of String, ArrayList)
-
         Dim objWorkbook As Workbook
         Dim objWorkbooks As Workbooks
         'Dim objSheets As Sheets
         Dim NeededDatas As New Dictionary(Of String, ArrayList)
         Dim testSteps As New ArrayList
-
         Dim intUsedRange As Integer
-
-
         objWorkbooks = OpenExcel(path, True)
 
         For Each objWorkbook In objWorkbooks
