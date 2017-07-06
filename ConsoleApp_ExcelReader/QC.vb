@@ -15,7 +15,7 @@ Public Class QC
         objDesignStep = objDesignFactory.AddItem("Step1")
         objDesignStep.StepDescription = "StepDescription"
         objDesignStep.StepExpectedResult = "StepExpectedResult"
-        ' ArrayList SS
+        ' ArrayList SSS
     End Sub
 
 End Class
